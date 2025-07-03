@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice';
 
 const Head = () => {
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  
+  useEffect(() => {
+    //API Call
+    console.log(searchQuery);
+  }, [searchQuery])
 
   const dispatch = useDispatch();
 
@@ -24,7 +32,10 @@ const Head = () => {
         </a>
       </div>
       <div className='col-span-9 px-10 flex justify-center'>
-        <input className='w-3/4 border border-gray-400 px-2 rounded-s-full' type='text' />
+        <input
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className='w-3/4 border border-gray-400 px-2 rounded-s-full' type='text' />
         <button className='bg-gray-100 border border-gray-400 px-5 py-2 rounded-e-full'>🔍</button>
       </div>
       <div className='col-span-1'>
