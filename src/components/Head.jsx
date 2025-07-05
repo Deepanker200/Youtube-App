@@ -1,16 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice';
+import { YOUTUBE_SEARCH_API } from '../utils/constants';
 
 const Head = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
 
-  
+
   useEffect(() => {
     //API Call
     console.log(searchQuery);
+
+    //make an api call after every key press
+    //but if the difference between 2 API calls is <200ms
+    //decline the API call
+
+    getSearchSuggestions();
+
   }, [searchQuery])
+
+
+  const getSearchSuggestions = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log(json[0]);
+
+  }
 
   const dispatch = useDispatch();
 
