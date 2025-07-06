@@ -6,7 +6,7 @@ const ButtonList = () => {
   const list=["All","Music","WWE","JavaScript","Gaming","Movies","Ghost Stories","Cricket","Coding"]
 
   return (
-    <div className='flex flex-wrap justify-around'>
+    <div className='flex flex-wrap justify-around mt-24'>
      {
       list.map((name,index)=><Button key={index} name={name}/>)
      }
