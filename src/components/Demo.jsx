@@ -11,7 +11,7 @@ const Demo = () => {
     const prime = useMemo(() =>
         findPrime(text), [text]);       //It becomes a variable and not a function
 
-    const v = 10;
+    // const v = 10;
 
     return (
         <div className={'m-4 mt-24 p-2 w-96 h-96 border border-black ' + (isDarkTheme && "bg-gray-900 text-white")
@@ -19,7 +19,7 @@ const Demo = () => {
         }>
             <div>
                 <button className='m-10 p-2 bg-green-500' onClick={() => setIsDarkTheme(!isDarkTheme)}>
-                    Toggle {v}</button>
+                    Toggle</button>
             </div>
             <div>
                 <input className='border border-black w-72 px-2'
