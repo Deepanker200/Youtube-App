@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice';
 import { cacheResults } from '../utils/searchSlice';
-import { YOUTUBE_SEARCH_API } from '../utils/constants';
+import { YOUTUBE_SEARCH_API, GOOGLE_API_KEY } from '../utils/constants';
 
 const Head = () => {
 
@@ -11,12 +11,12 @@ const Head = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
 
-  const searchCache=useSelector((store)=>store.search);
-  const dispatch_new=useDispatch();
+  const searchCache = useSelector((store) => store.search);
+  const dispatch_new = useDispatch();
 
   useEffect(() => {
     //API Call
-    console.log(searchQuery);
+    // console.log(searchQuery);
 
     //make an api call after every key press
     //but if the difference between 2 API calls is <200ms
@@ -39,17 +39,21 @@ const Head = () => {
 
 
   const getSearchSuggestions = async () => {
-    console.log("API call: ", searchQuery);
+    // console.log("API call: ", searchQuery);
 
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    // const data = await fetch(YOUTUBE_SEARCH_API + searchQuery + GOOGLE_API_KEY);
+    const url = `${YOUTUBE_SEARCH_API}${encodeURIComponent(searchQuery)}&key=${GOOGLE_API_KEY}`;
+    const data = await fetch(url);
     const json = await data.json();
-    // console.log(json[1]);
-    setSuggestions(json[1])
+    console.log(json);
+    setSuggestions(json.items)
+    console.log(suggestions);
+    
 
 
     //update cache
     dispatch_new(cacheResults({
-      [searchQuery]:json[1]       //Dynamically creating an object
+      [searchQuery]: json[1]       //Dynamically creating an object
     }))
 
   }
@@ -79,21 +83,22 @@ const Head = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 10000)}
             className='w-3/4 border border-gray-400 px-2 py-2 rounded-s-full' type='text' />
           <button className='bg-gray-100 border border-gray-400 px-5 py-2 rounded-e-full'>
             🔍
           </button>
         </div>
-        {showSuggestions && <div className='absolute bg-white py-2 px-2 w-[48rem] shadow-lg rounded-lg border border-gray-100'>
-          <ul>
-            {suggestions.map((s) => (
-              <li key={s} className='py-2 px-3 shadow-sm hover:bg-gray-100'>
-                🔍{s}
-              </li>
-            ))}
-          </ul>
-        </div>}
+        {showSuggestions && Array.isArray(suggestions) && suggestions.length > 0 && (
+          <div className='absolute bg-white py-2 px-2 w-[48rem] shadow-lg rounded-lg border border-gray-100'>
+            <ul>
+              {suggestions.map((s) => (
+                <li key={s.id.videoId} className='py-2 px-3 shadow-sm hover:bg-gray-100'>
+                  🔍{s.snippet.title}
+                </li>
+              ))}
+            </ul>
+          </div>)}
       </div>
       <div className='col-span-1'>
         <img className="h-8" src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
