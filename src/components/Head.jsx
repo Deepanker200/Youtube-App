@@ -65,27 +65,27 @@ const Head = () => {
   }
 
   return (
-    <div className='grid grid-cols-12 p-5 shadow-lg fixed w-full bg-white'>
-      <div className='flex col-span-2 '>
+    <div className='grid grid-cols-12 p-3 md:p-5 shadow-lg fixed w-full bg-white'>
+      <div className='flex col-span-3 md:col-span-2 '>
         <img
           onClick={() => toggleMenuHandler()}
-          className="h-8 cursor-pointer"
+          className="h-6 md:h-8 cursor-pointer"
           src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png' />
         <a href='/'>
           <img
-            className="h-8 ml-3"
+            className="h-6 md:h-8 ml-3"
             src='src/assets/img/yt-logo.jpg' />
         </a>
       </div>
-      <div className='col-span-9 px-10'>
-        <div>
+      <div className='col-span-8 md:col-span-9 px-5 pe-0 md:px-10'>
+        <div className='flex'>
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 10000)}
-            className='w-3/4 border border-gray-400 px-2 py-2 rounded-s-full' type='text' />
-          <button className='bg-gray-100 border border-gray-400 px-5 py-2 rounded-e-full'>
+            className='w-3/4 md:w-3/4 h-6 md:h-10 border border-gray-400 px-2 px md:py-2 rounded-s-full' type='text' />
+          <button className='bg-gray-100 h-6 md:h-10 border border-gray-400 px-4 md:px-5 md:py-2 rounded-e-full'>
             🔍
           </button>
         </div>
