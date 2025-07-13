@@ -33,7 +33,7 @@ const LiveChat = () => {
 
     return (
         <>
-            <div className='w-full h-[600px] ml-2 p-2 border border-black bg-slate-100 rounded-lg overflow-y-hidden overflow-y-scroll flex flex-col-reverse'>
+            <div className='w-full h-[600px] ml-2 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse'>
                 {chatMessages.map((c, i) =>
                     <ChatMessage key={i} name={c.name} message={c.message} />
                 )}
@@ -50,7 +50,7 @@ const LiveChat = () => {
                     }))
                     setLiveMessage("");
                 }}>
-                <input className='w-80' type='text' value={liveMessage} onChange={(e) => {
+                <input className='w-80 border border-black rounded-lg' type='text' value={liveMessage} onChange={(e) => {
                     setLiveMessage(e.target.value);
                 }} />
                 <button className='px-2 mx-2 bg-green-100'>Send</button>

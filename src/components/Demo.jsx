@@ -14,7 +14,7 @@ const Demo = () => {
     // const v = 10;
 
     return (
-        <div className={'m-4 mt-24 p-2 w-96 h-96 border border-black ' + (isDarkTheme && "bg-gray-900 text-white")
+        <div className={'m-4 mt-24 p-2 w-[150px] md:w-96 md:h-96 border border-black ' + (isDarkTheme && "bg-gray-900 text-white")
 
         }>
             <div>
@@ -22,7 +22,7 @@ const Demo = () => {
                     Toggle</button>
             </div>
             <div>
-                <input className='border border-black w-72 px-2'
+                <input className='border border-black w-28 md:w-72 px-2'
                     type='number' value={text}
                     onChange={(e) => setText(e.target.value)} />
             </div>

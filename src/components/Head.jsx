@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice';
 import { cacheResults } from '../utils/searchSlice';
 import { YOUTUBE_SEARCH_API, GOOGLE_API_KEY } from '../utils/constants';
+import { Link } from 'react-router-dom';
 
 const Head = () => {
 
@@ -48,7 +49,7 @@ const Head = () => {
     console.log(json);
     setSuggestions(json.items)
     console.log(suggestions);
-    
+
 
 
     //update cache
@@ -65,7 +66,7 @@ const Head = () => {
   }
 
   return (
-    <div className='grid grid-cols-12 p-3 md:p-5 shadow-lg fixed w-full bg-white'>
+    <div className='grid grid-cols-12 py-3 px-2 md:p-5 shadow-lg fixed w-full bg-white z-30'>
       <div className='flex col-span-3 md:col-span-2 '>
         <img
           onClick={() => toggleMenuHandler()}
@@ -90,18 +91,22 @@ const Head = () => {
           </button>
         </div>
         {showSuggestions && Array.isArray(suggestions) && suggestions.length > 0 && (
-          <div className='absolute bg-white py-2 px-2 w-[48rem] shadow-lg rounded-lg border border-gray-100'>
-            <ul>
-              {suggestions.map((s) => (
-                <li key={s.id.videoId} className='py-2 px-3 shadow-sm hover:bg-gray-100'>
-                  🔍{s.snippet.title}
+          <div className='absolute bg-white py-2 px-2 w-[200px] md:w-[48rem] shadow-lg rounded-lg border border-gray-100'>
+            <ul className='text-[10px] md:text-lg'>
+              {suggestions.map((s) => {
+                // console.log("S here: ",s.kind.id.videoId);
+
+                return <li key={s.id.videoId} className='py-1 px-2 md:py-2 md:px-3 shadow-sm hover:bg-gray-100'>
+                  <Link to={`/watch?v=${s.id.videoId}`}>
+                    🔍 {s.snippet.title}
+                  </Link>
                 </li>
-              ))}
+              })}
             </ul>
           </div>)}
       </div>
-      <div className='col-span-1'>
-        <img className="h-8" src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
+      <div className='col-span-1 flex justify-end'>
+        <img className="h-6 md:h-8" src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
       </div>
     </div>
   )

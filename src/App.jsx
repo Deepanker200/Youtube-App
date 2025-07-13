@@ -25,7 +25,8 @@ const appRouter = createBrowserRouter([{
       path: "demo",
       element: (
         <>
-          <Demo /><Demo2 />
+          <Demo />
+          <Demo2 />
         </>
       )
     },
@@ -37,7 +38,6 @@ function App() {
   return (
     <Provider store={store}>
       <>
-        <Head />
         <RouterProvider router={appRouter} />
       </>
     </Provider>

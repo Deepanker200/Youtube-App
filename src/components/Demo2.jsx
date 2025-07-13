@@ -18,7 +18,7 @@ const Demo2 = () => {
   },[])
 
   return (
-    <div className='m-4 mt-24 p-2 bg-slate-50 border border-black w-96 h-96'>
+    <div className='m-4 mt-24 p-2 bg-slate-50 border border-black w-[180px] md:w-96 md:h-96'>
       <div className='flex'>
         <button className='p-2 m-2 bg-green-300'
           onClick={() => {
