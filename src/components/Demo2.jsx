@@ -10,7 +10,7 @@ const Demo2 = () => {
   const i = useRef(null);
   useEffect(() => {
      i.current = setInterval(() => {
-      console.log("Namaste React", Math.random());
+      // console.log("Namaste React", Math.random());
     }, 1000)
 
     //this is an example of component did unmount
@@ -23,7 +23,7 @@ const Demo2 = () => {
         <button className='p-2 m-2 bg-green-300'
           onClick={() => {
             x = x + 1
-            console.log(x);
+            // console.log(x);
 
           }}>Increase X</button>
         <h1 className='font-bold text-xl'>Let= {x}</h1>
@@ -43,7 +43,7 @@ const Demo2 = () => {
         <button className='p-2 m-2 bg-green-300'
           onClick={() => {
             ref.current = ref.current + 1;
-            console.log(ref.current);
+            // console.log(ref.current);
 
           }}>Increase Ref</button>
         <h1 className='font-bold text-xl'>Ref= {ref.current}</h1>

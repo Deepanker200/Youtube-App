@@ -4,7 +4,7 @@ import { findPrime } from '../utils/helper';
 const Demo = () => {
     const [text, setText] = useState("");
     const [isDarkTheme, setIsDarkTheme] = useState(false);
-    console.log("Render");
+    // console.log("Render");
 
     // const prime=findPrime(text)
 
