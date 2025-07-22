@@ -5,7 +5,7 @@
 
 
 - OnChange re-renders using state variable
-
+- onKeyUp uses- Check
 Cache:
 Time complexity to search in array O(n)
 Time complexity to search in map(hash-map)/object O(1)
