@@ -25,9 +25,13 @@ const Head = () => {
 
     const timer = setTimeout(() => {
       if (searchCache[searchQuery]) {
+          console.log("Using cached data for:", searchQuery);
+
         setSuggestions(searchCache[searchQuery]);
       }
       else {
+          console.log("Fetching new data for:", searchQuery);
+
         getSearchSuggestions()
       }
     }, 200);
@@ -54,7 +58,8 @@ const Head = () => {
 
     //update cache
     dispatch_new(cacheResults({
-      [searchQuery]: json[1]       //Dynamically creating an object
+      // [searchQuery]: json.[1]       //Dynamically creating an object
+      [searchQuery]: json.items       //Dynamically creating an object
     }))
 
   }
